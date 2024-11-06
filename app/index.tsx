@@ -1,8 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, Switch } from 'react-native';
 import { useRouter } from 'expo-router';
-
-// Dados fictícios de exemplo
 const cartItems = [
   {
     id: '1',
@@ -20,7 +18,6 @@ const cartItems = [
   },
 ];
 
-// Função para calcular o total do carrinho
 const calculateTotalPrice = () => {
   return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 };
@@ -30,7 +27,6 @@ const totalPrice = calculateTotalPrice();
 const CartScreen = () => {
   const router = useRouter();
 
-  // Função para remover um item do carrinho
   const handleRemoveItem = (itemId: string) => {
     console.log(`Removendo item com id: ${itemId}`);
   };
@@ -55,9 +51,8 @@ const CartScreen = () => {
         ))}
       </ScrollView>
 
-      {/* Rodapé fixo com subtotal, cupom e saldo de moedas */}
       <View style={styles.footer}>
-        {/* Seção de Cupons */}
+     
         <View style={styles.couponSection}>
           <TouchableOpacity style={styles.couponButton}>
             <Text style={styles.couponText}>Cupom Shopee</Text>
@@ -65,7 +60,6 @@ const CartScreen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Saldo de Moedas */}
         <View style={styles.coinBalanceSection}>
           <Text style={styles.coinBalanceText}>Saldo de moedas insuficiente</Text>
           <Switch disabled={true} value={false} />
@@ -73,12 +67,11 @@ const CartScreen = () => {
 
         <View style={styles.subtotalContainer}>
           <Text style={styles.selectAllText}>Tudo</Text>
-          <Text style={styles.subtotalText}>Sub-total</Text>
+          <Text style={styles.subtotalText}>Sub-total: </Text>
           <Text style={styles.subtotalValue}>R${totalPrice.toFixed(2)}</Text>
 
-          {/* Botão "Continuar" ao lado do "Sub-total" */}
           <TouchableOpacity style={styles.checkoutButton} onPress={() => router.push("/checkout")}>
-            <Text style={styles.checkoutButtonText}>Continuar (1)</Text>
+            <Text style={styles.checkoutButtonText}>Continuar (2)</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -86,18 +79,17 @@ const CartScreen = () => {
   );
 };
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff", // Alterado para fundo branco
+    backgroundColor: "#fff", 
     paddingHorizontal: 16,
     paddingVertical: 20,
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#000", // Texto preto
+    color: "#000", 
     marginBottom: 10,
   },
   cartContent: {
@@ -105,11 +97,11 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: "row",
-    backgroundColor: "#f9f9f9", // Fundo claro para itens
+    backgroundColor: "#f9f9f9", 
     padding: 16,
     borderRadius: 8,
     marginVertical: 8,
-    shadowColor: "#000", // Sombra para destacar os itens
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
@@ -118,7 +110,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     marginRight: 16,
-    backgroundColor: "#ddd", // Fundo cinza para as imagens
+    backgroundColor: "#ddd", 
   },
   itemDetails: {
     flex: 1,
@@ -126,26 +118,26 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#000", // Texto preto
+    color: "#000", 
   },
   priceText: {
     fontSize: 16,
-    color: "#333", // Texto mais escuro para preços
+    color: "#333", 
   },
   itemQuantity: {
     fontSize: 14,
-    color: "#666", // Cor mais suave
+    color: "#666", 
     marginTop: 8,
   },
   removeText: {
     fontSize: 14,
-    color: "#ff4d4d", // Cor vermelha para remover
+    color: "#ff4d4d", 
     marginTop: 8,
   },
   couponSection: {
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd", // Linha separadora mais clara
+    borderBottomColor: "#ddd", 
   },
   couponButton: {
     flexDirection: "row",
@@ -154,11 +146,11 @@ const styles = StyleSheet.create({
   },
   couponText: {
     fontSize: 16,
-    color: "#000", // Texto preto
+    color: "#000", 
   },
   couponPlaceholder: {
     fontSize: 16,
-    color: "#888", // Texto mais claro
+    color: "#888", 
   },
   coinBalanceSection: {
     flexDirection: "row",
@@ -166,52 +158,52 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd", // Linha separadora mais clara
+    borderBottomColor: "#ddd", 
   },
   coinBalanceText: {
     fontSize: 16,
-    color: "#000", // Texto preto
+    color: "#000", 
   },
   footer: {
     padding: 16,
-    backgroundColor: "#fff", // Fundo branco para o rodapé
+    backgroundColor: "#fff",
     borderTopWidth: 1,
-    borderTopColor: "#ddd", // Linha separadora mais clara
+    borderTopColor: "#ddd", 
   },
   subtotalContainer: {
-    flexDirection: "row", // Usado para alinhar "Sub-total" e o botão "Continuar" horizontalmente
-    alignItems: "center", // Centraliza verticalmente
+    flexDirection: "row", 
+    alignItems: "center",
     marginVertical: 10,
-    justifyContent: "space-between", // Espaça adequadamente os itens
+    justifyContent: "space-between", 
   },
   selectAllText: {
     fontSize: 16,
-    color: "#000", // Texto preto
+    color: "#000", 
     marginRight: 8,
   },
   subtotalText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#000", // Texto preto
+    color: "#000", 
     marginLeft: "auto",
   },
   subtotalValue: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#fff", // Cor branca para o valor
-    marginRight: 10, // Adiciona espaçamento entre o valor e o botão
+    color: "#ff4d4d", 
+    marginRight: 0.1, 
   },
   checkoutButton: {
-    backgroundColor: "#ff4d4d", // Cor vermelha para o botão
+    backgroundColor: "#ff4d4d", 
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
-    marginLeft: 10, // Espaçamento entre "Sub-total" e o botão
+    marginLeft: 10, 
   },
   checkoutButtonText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#fff", // Texto branco no botão
+    color: "#fff", 
     textAlign: "center",
   },
 });
