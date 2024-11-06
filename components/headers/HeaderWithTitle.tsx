@@ -1,38 +1,39 @@
-// HeaderWithTitle.tsx
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import { Stack } from "expo-router";
 
-interface HeaderWithTitleProps {
+type HeaderWithTitleProps = {
   title: string;
-  onBackPress: () => void;
-}
-
-const HeaderWithTitle: React.FC<HeaderWithTitleProps> = ({ title, onBackPress }) => {
-  return (
-    <View style={styles.header}>
-      <TouchableOpacity onPress={onBackPress}>
-        <Text style={styles.backButton}>{"< Voltar"}</Text>
-      </TouchableOpacity>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
+  edit?: string; 
+  onEditPress?: () => void;
 };
 
+export default function HeaderWithTitle({ title, edit, onEditPress }: HeaderWithTitleProps) {
+  return (
+    <Stack.Screen
+      options={{
+        title,
+        headerRight: () => (
+          <View style={styles.right}>
+            {edit && onEditPress && (
+              <TouchableOpacity onPress={onEditPress} accessible={true} accessibilityLabel="Editar">
+                <Text style={styles.editText}>{edit}</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        ),
+      }}
+    />
+  );
+}
+
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
+  right: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  backButton: {
-    color: '#007BFF',
-    fontSize: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 10,
+  editText: {
+    fontWeight: "bold",
+    color: "#FF3B30", 
   },
 });
-
-export default HeaderWithTitle;

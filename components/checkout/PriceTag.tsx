@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
 interface PriceTagProps {
-  price: string;
+  price: number;
 }
 
 const PriceTag: React.FC<PriceTagProps> = ({ price }) => {
@@ -11,7 +11,7 @@ const PriceTag: React.FC<PriceTagProps> = ({ price }) => {
 
 const styles = StyleSheet.create({
   price: {
-    color: '#FF3B30',
+    color: '#FF3B30', 
     fontWeight: 'bold',
     fontSize: 16,
   },

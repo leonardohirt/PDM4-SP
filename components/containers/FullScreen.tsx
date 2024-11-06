@@ -1,6 +1,6 @@
 import { DEFAULT_GAP, DEFAULT_PADDING } from "@/constants/globalStyles";
 import React, { ReactNode } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type FullScreenProps = {
   children: ReactNode;
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     gap: DEFAULT_GAP * 2,
   },
   center: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
 });

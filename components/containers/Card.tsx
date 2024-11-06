@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
 
 interface CardProps {
+  title: string;
   onPress?: () => void;
   children: React.ReactNode;
   style?: ViewStyle;
